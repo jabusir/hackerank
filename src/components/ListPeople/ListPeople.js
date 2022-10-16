@@ -1,8 +1,8 @@
 import "./ListPeople.css";
-export default function ListPeople() {
+export default function ListPeople({ contacts }) {
   return (
     <div className="card w-40 mx-10 px-30 py-30">
-        <h3 className="pt-10"> Contact List</h3>
+      <h3 className="pt-10"> Contact List</h3>
       <table>
         <thead>
           <tr>
@@ -13,12 +13,16 @@ export default function ListPeople() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-                <td>1</td>
-                <td>Replace Me</td>
-                <td>1234567890</td>
-                <td>example@email.com</td>
+          {contacts.map(({ id, name, email, phoneNumber }) => {
+            return (
+              <tr key={id} data-testid="person">
+                <td data-testid="person-id">{id}</td>
+                <td data-testid="person-name">{name}</td>
+                <td data-testid="person-number">{phoneNumber}</td>
+                <td data-testid="person-email">{email}</td>
               </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
